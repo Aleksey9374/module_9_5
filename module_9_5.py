@@ -29,10 +29,10 @@ class Iterator:
         self.pointer = self.start
         return self
     def __next__(self):
-        self.pointer += self.step
-        if self.step > 0 and self.pointer > self.stop or self.step < 0 and self.pointer < self.stop:
+        if self.step > 0 and self.pointer > self.stop or self.step < 0 and self.pointer < self.stop: # условие для исключения переместил вперёд
             raise StopIteration
-        return self.pointer
+        self.pointer += self.step
+        return self.pointer - self.step # возвращаю с шагом назад чтобы итерация начиналась с элемента start
 try:
     iter1 = Iterator(100, 200, 0)
     for i in iter1:
